@@ -1,0 +1,19 @@
+pipeline {
+    agent any
+    environment {
+        MY_VAR = "my first environment variable"
+        PATH = "/opt/maven3/bin:$PATH"
+    }
+    stages{
+        stage("Checking out"){
+            steps{
+                git 'https://github.com/psurani/node-app.git'
+            }
+        }
+        stage("Maven build"){
+            steps{
+                echo "mvn clean package"
+            }
+        }
+    }
+}
